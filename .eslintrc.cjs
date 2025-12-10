@@ -36,6 +36,10 @@ module.exports = {
       },
     ],
     
+    // Disable deprecated rules that don't exist in @typescript-eslint v8
+    '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/no-throw-literal': 'off',
+    
     // Allow React in scope for JSX (React 17+ doesn't need it)
     'react/react-in-jsx-scope': 'off',
     
@@ -93,6 +97,14 @@ module.exports = {
         // TypeScript-specific rules can go here
       },
     },
+    {
+      // Configuration for test files
+      files: ['*.test.{ts,tsx}', '*.spec.{ts,tsx}'],
+      rules: {
+        // Allow prop spreading in tests for convenience
+        'react/jsx-props-no-spreading': 'off',
+      },
+    },
   ],
   settings: {
     'import/resolver': {
@@ -105,4 +117,5 @@ module.exports = {
     },
   },
 };
+
 

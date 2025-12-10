@@ -1,64 +1,65 @@
 {
-  "siteName": "Pink Marlin Digital",
-  "title": "Pink Marlin Digital - Starter Site",
-  "description": "This is the starter site for Pink Marlin Digital and TryMarlin.ai",
-  "baseUrl": "https://example.com",
+  "siteName": "Cruise Ship Drinks",
+  "title": "Cruise Ship Drinks - Tropical Paradise Awaits",
+  "description": "Discover refreshing tropical drinks and cocktails on your Caribbean cruise. Sip, relax, and enjoy paradise.",
+  "baseUrl": "https://cruiseshipdrinks.com",
   "brand": {
-    "name": "Pink Marlin Digital",
-    "slogan": "Building modern, performant websites",
+    "name": "Cruise Ship Drinks",
+    "slogan": "Sip, Relax, Enjoy Paradise",
     "logo": {
       "light": "/logo-light.svg",
       "dark": "/logo-dark.svg",
       "favicon": "/favicon.svg"
+    },
+    "colors": {
+      "primary": "#FFB3BA",
+      "secondary": "#7DD3FC",
+      "accent": "#B5EAD7",
+      "highlight": "#FFF4BD"
     }
   },
   "business": {
-    "name": "Pink Marlin Digital",
+    "name": "Cruise Ship Drinks",
     "address": {
-      "street": "123 Main Street",
-      "city": "City",
-      "state": "State",
-      "zip": "12345",
-      "country": "USA"
+      "street": "Caribbean Sea",
+      "city": "At Sea",
+      "state": "Caribbean",
+      "zip": "00000",
+      "country": "Caribbean"
     },
-    "phone": "+1 (555) 123-4567",
-    "email": "info@pinkmarlindigital.com",
+    "phone": "+1 (555) CRUISE",
+    "email": "info@cruiseshipdrinks.com",
     "hours": {
-      "monday": "9:00 AM - 5:00 PM",
-      "tuesday": "9:00 AM - 5:00 PM",
-      "wednesday": "9:00 AM - 5:00 PM",
-      "thursday": "9:00 AM - 5:00 PM",
-      "friday": "9:00 AM - 5:00 PM",
-      "saturday": "Closed",
-      "sunday": "Closed"
+      "monday": "10:00 AM - 11:00 PM",
+      "tuesday": "10:00 AM - 11:00 PM",
+      "wednesday": "10:00 AM - 11:00 PM",
+      "thursday": "10:00 AM - 11:00 PM",
+      "friday": "10:00 AM - 12:00 AM",
+      "saturday": "10:00 AM - 12:00 AM",
+      "sunday": "10:00 AM - 11:00 PM"
     }
   },
   "social": [
     {
       "platform": "facebook",
-      "url": "https://facebook.com/pinkmarlindigital",
+      "url": "https://facebook.com/cruiseshipdrinks",
       "icon": "facebook"
     },
     {
       "platform": "twitter",
-      "url": "https://twitter.com/pinkmarlindigital",
+      "url": "https://twitter.com/cruiseshipdrinks",
       "icon": "twitter"
     },
     {
-      "platform": "linkedin",
-      "url": "https://linkedin.com/company/pinkmarlindigital",
-      "icon": "linkedin"
-    },
-    {
       "platform": "instagram",
-      "url": "https://instagram.com/pinkmarlindigital",
+      "url": "https://instagram.com/cruiseshipdrinks",
       "icon": "instagram"
     }
   ],
   "seo": {
-    "defaultTitle": "Pink Marlin Digital",
-    "defaultDescription": "This is the starter site for Pink Marlin Digital and TryMarlin.ai",
+    "defaultTitle": "Cruise Ship Drinks - Tropical Paradise Awaits",
+    "defaultDescription": "Discover refreshing tropical drinks and cocktails on your Caribbean cruise. Sip, relax, and enjoy paradise.",
     "defaultImage": "/og-image.jpg",
-    "twitterHandle": "@pinkmarlindigital"
+    "twitterHandle": "@cruiseshipdrinks"
   }
 }

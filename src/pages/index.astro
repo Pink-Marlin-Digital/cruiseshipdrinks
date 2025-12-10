@@ -1,6 +1,26 @@
 ---
 import '../styles/global.css';
 import siteConfig from '../config/site.json';
+
+// Import all atoms
+import { Button } from '../components/atoms/Button/Button';
+import { Input } from '../components/atoms/Input/Input';
+import { Label } from '../components/atoms/Label/Label';
+import { Badge } from '../components/atoms/Badge/Badge';
+import { Heading } from '../components/atoms/Heading/Heading';
+import { Text } from '../components/atoms/Text/Text';
+import { Link } from '../components/atoms/Link/Link';
+import { Icon } from '../components/atoms/Icon/Icon';
+
+// Import all molecules
+import { Card } from '../components/molecules/Card/Card';
+import { DrinkCard } from '../components/molecules/DrinkCard/DrinkCard';
+import { FormField } from '../components/molecules/FormField/FormField';
+import { ButtonGroup } from '../components/molecules/ButtonGroup/ButtonGroup';
+import { CTA } from '../components/molecules/CTA/CTA';
+import { PriceDisplay } from '../components/molecules/PriceDisplay/PriceDisplay';
+import { Rating } from '../components/molecules/Rating/Rating';
+import { DrinkImage } from '../components/molecules/DrinkImage/DrinkImage';
 ---
 
 <!doctype html>
@@ -13,39 +33,298 @@ import siteConfig from '../config/site.json';
     <meta name="description" content={siteConfig.description} />
     <title>{siteConfig.title}</title>
   </head>
-  <body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-    <main class="container mx-auto px-4 py-16">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-          Welcome to {siteConfig.siteName}
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-          This is the starter site for <span class="font-semibold text-indigo-600"
-            >Pink Marlin Digital</span
-          > and <span class="font-semibold text-indigo-600">TryMarlin.ai</span>
-        </p>
-        <div class="bg-white rounded-lg shadow-lg p-8 mt-12">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Getting Started</h2>
-          <p class="text-gray-600 mb-6">
-            This template provides a clean foundation for building modern, performant websites using
-            Astro, React, and Tailwind CSS.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://github.com/Pink-Marlin-Digital"
-              class="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-            >
-              View on GitHub
-            </a>
-            <a
-              href="https://docs.astro.build"
-              class="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors"
-            >
-              Read the Docs
-            </a>
+  <body>
+    <main class="container mx-auto px-4 py-8 md:py-16">
+      <!-- Hero Section -->
+      <section class="mb-16">
+        <CTA
+          client:load
+          heading={`Welcome to ${siteConfig.siteName}`}
+          text={siteConfig.brand.slogan}
+          buttonText="Explore Our Drinks"
+          buttonHref="#drinks"
+        />
+      </section>
+
+      <!-- Atoms Showcase Section -->
+      <section class="mb-16" id="atoms">
+        <Heading level={1} className="text-center mb-8">
+          Design System - Atoms
+        </Heading>
+        <Text variant="large" className="text-center mb-12 text-gray-600">
+          Basic building blocks of our design system
+        </Text>
+
+        <div class="space-y-12">
+          <!-- Button -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Button</Heading>
+            <div class="flex flex-wrap gap-4">
+              <Button client:load variant="primary">Primary</Button>
+              <Button client:load variant="secondary">Secondary</Button>
+              <Button client:load variant="outline">Outline</Button>
+              <Button client:load variant="ghost">Ghost</Button>
+              <Button client:load size="sm">Small</Button>
+              <Button client:load size="md">Medium</Button>
+              <Button client:load size="lg">Large</Button>
+              <Button client:load disabled>Disabled</Button>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Input</Heading>
+            <div class="max-w-md space-y-4">
+              <Input client:load id="input-default" placeholder="Default input" />
+              <Input client:load id="input-error" placeholder="Error state" error="This field is required" />
+              <Input client:load id="input-disabled" placeholder="Disabled input" disabled />
+            </div>
+          </div>
+
+          <!-- Label -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Label</Heading>
+            <div class="space-y-2">
+              <Label client:load htmlFor="label1">Default Label</Label>
+              <Label client:load htmlFor="label2" required>Required Label</Label>
+            </div>
+          </div>
+
+          <!-- Badge -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Badge</Heading>
+            <div class="flex flex-wrap gap-2">
+              <Badge client:load>Default</Badge>
+              <Badge client:load variant="success">Success</Badge>
+              <Badge client:load variant="warning">Warning</Badge>
+              <Badge client:load variant="info">Info</Badge>
+            </div>
+          </div>
+
+          <!-- Heading -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Heading</Heading>
+            <div class="space-y-2">
+              <Heading client:load level={1}>Heading 1</Heading>
+              <Heading client:load level={2}>Heading 2</Heading>
+              <Heading client:load level={3}>Heading 3</Heading>
+              <Heading client:load level={4}>Heading 4</Heading>
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Text</Heading>
+            <div class="space-y-2">
+              <Text client:load variant="small">Small text variant</Text>
+              <Text client:load variant="body">Body text variant</Text>
+              <Text client:load variant="large">Large text variant</Text>
+            </div>
+          </div>
+
+          <!-- Link -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Link</Heading>
+            <div class="flex flex-wrap gap-4">
+              <Link client:load href="/#atoms" variant="default">Default Link</Link>
+              <Link client:load href="/#molecules" variant="underline">Underline Link</Link>
+              <Link client:load href="/#drinks" variant="button">Button Link</Link>
+            </div>
+          </div>
+
+          <!-- Icon -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Icon</Heading>
+            <div class="flex flex-wrap gap-4 items-center">
+              <Icon client:load name="add" size="sm" />
+              <Icon client:load name="add" size="md" />
+              <Icon client:load name="add" size="lg" />
+              <Icon client:load name="add" size="xl" />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Molecules Showcase Section -->
+      <section class="mb-16" id="molecules">
+        <Heading level={1} className="text-center mb-8">
+          Design System - Molecules
+        </Heading>
+        <Text variant="large" className="text-center mb-12 text-gray-600">
+          Composed components built from atoms
+        </Text>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <!-- Card -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Card</Heading>
+            <Card client:load>
+              <Text client:load>This is a basic card component with some content inside.</Text>
+            </Card>
+          </div>
+
+          <!-- ButtonGroup -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">ButtonGroup</Heading>
+            <ButtonGroup client:load>
+              <Button client:load variant="primary">First</Button>
+              <Button client:load variant="secondary">Second</Button>
+              <Button client:load variant="outline">Third</Button>
+            </ButtonGroup>
+          </div>
+
+          <!-- FormField -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">FormField</Heading>
+            <FormField client:load label="Email Address" id="email-demo" type="email" placeholder="you@example.com" />
+            <FormField client:load label="Password" id="password-demo" type="password" required error="Password is required" />
+          </div>
+
+          <!-- PriceDisplay -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">PriceDisplay</Heading>
+            <div class="space-y-4">
+              <PriceDisplay client:load amount={12.99} size="sm" />
+              <PriceDisplay client:load amount={15.50} size="md" />
+              <PriceDisplay client:load amount={22.00} size="lg" />
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">Rating</Heading>
+            <div class="space-y-4">
+              <Rating client:load value={3} size="sm" />
+              <Rating client:load value={4} size="md" />
+              <Rating client:load value={5} size="lg" />
+            </div>
+          </div>
+
+          <!-- DrinkImage -->
+          <div class="bg-white rounded-xl p-6 shadow-md">
+            <Heading level={2} className="mb-4">DrinkImage</Heading>
+            <DrinkImage client:load src="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop" alt="Tropical Drink" badge="New" />
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-12">
+          <Heading level={2} className="mb-4">CTA (Call-to-Action)</Heading>
+          <CTA
+            client:load
+            heading="Ready to Order?"
+            text="Browse our full menu of tropical delights"
+            buttonText="View Menu"
+            variant="secondary"
+          />
+        </div>
+      </section>
+
+      <!-- Integrated Example Section -->
+      <section class="mb-16" id="drinks">
+        <Heading level={1} className="text-center mb-8">
+          Sample Drink Menu
+        </Heading>
+        <Text variant="large" className="text-center mb-12 text-gray-600">
+          See our components in action
+        </Text>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <DrinkCard
+            client:load
+            name="Tropical Paradise"
+            description="A refreshing blend of pineapple, coconut, and mango with a splash of rum"
+            price={12.99}
+            image="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop"
+            badge="Popular"
+            rating={4.5}
+          />
+          <DrinkCard
+            client:load
+            name="Caribbean Sunset"
+            description="Grenadine, orange juice, and tropical fruit juices served over ice"
+            price={10.99}
+            image="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=300&fit=crop"
+            rating={4.8}
+          />
+          <DrinkCard
+            client:load
+            name="Mango Tango"
+            description="Fresh mango puree, lime juice, and sparkling water with a hint of mint"
+            price={9.99}
+            image="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=300&fit=crop"
+            badge="New"
+            rating={4.2}
+          />
+          <DrinkCard
+            client:load
+            name="Pina Colada"
+            description="Classic Caribbean favorite with coconut cream, pineapple, and white rum"
+            price={13.99}
+            image="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop"
+            rating={5.0}
+          />
+          <DrinkCard
+            client:load
+            name="Blue Lagoon"
+            description="Vodka, blue curacao, and lemonade creating a stunning tropical blue drink"
+            price={11.99}
+            image="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=300&fit=crop"
+            badge="Special"
+            rating={4.6}
+          />
+          <DrinkCard
+            client:load
+            name="Strawberry Daiquiri"
+            description="Fresh strawberries blended with rum, lime, and simple syrup"
+            price={12.50}
+            image="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=300&fit=crop"
+            rating={4.7}
+          />
+        </div>
+
+        <!-- Sample Form -->
+        <div class="max-w-2xl mx-auto bg-white rounded-xl p-8 shadow-md">
+          <Heading level={2} className="mb-6 text-center">
+            Order Form Example
+          </Heading>
+          <form class="space-y-4">
+            <FormField
+              client:load
+              label="Full Name"
+              id="order-name"
+              type="text"
+              placeholder="John Doe"
+              required
+            />
+            <FormField
+              client:load
+              label="Email"
+              id="order-email"
+              type="email"
+              placeholder="john@example.com"
+              required
+            />
+            <FormField
+              client:load
+              label="Phone Number"
+              id="order-phone"
+              type="tel"
+              placeholder="+1 (555) 123-4567"
+            />
+            <div class="pt-4">
+              <ButtonGroup client:load>
+                <Button client:load type="submit" variant="primary">
+                  Submit Order
+                </Button>
+                <Button client:load type="reset" variant="outline">
+                  Reset
+                </Button>
+              </ButtonGroup>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
   </body>
 </html>

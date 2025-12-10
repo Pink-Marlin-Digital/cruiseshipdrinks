@@ -85,3 +85,4 @@ Consider adding:
 - CI/CD integration to run linting on pull requests
 - VSCode settings for consistent IDE configuration
 
+
