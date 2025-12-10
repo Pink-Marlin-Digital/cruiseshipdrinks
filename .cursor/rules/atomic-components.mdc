@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+---
+/**
+ * This project must adhere to atomic UI design theory.
+ * Reference: https://bradfrost.com/blog/post/atomic-web-design/
+ *
+ * Atomic design organizes UI components into a hierarchy:
+ *
+ * - Atoms: Basic building blocks (e.g., buttons, inputs, labels, text, icons).
+ * - Molecules: Groups of atoms composed together to form meaningful units (e.g., input group, card with title and icon).
+ * - Organisms: Relatively complex, distinct UI sections built from molecules and atoms (e.g., header, feature section, footer).
+ *
+ * All new and updated components/pages must map to an atomic tier, be grouped under
+ * the matching `src/components/atoms`, `molecules`, or `organisms` folders, and strive for maximum reusability and clarity.
+ */

@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+---
+# Rule: Write Code That Is Intentionally Structured, Readable, and Self-Documenting
+
+## Required Behaviors
+1. Use descriptive and consistent naming for variables, functions, and modules.
+2. Organize code so that related logic appears together and control flow is easy to follow.
+3. Prefer clear, direct expressions over clever or compressed code that obscures intent.
+4. Ensure functions are short enough that their role can be understood at a glance.
+5. Use comments only to explain intent or context, not basic mechanics.
+6. Format code according to the project's established conventions.
+
+## Example Pattern
+```ts
+export async function fetchActiveUsers(apiClient) {
+  // Validate the dependency
+  if (!apiClient || typeof apiClient.fetchUsers !== "function") {
+    throw new Error("A valid apiClient with a fetchUsers method is required.");
+  }
+
+  // Fetch all users in a clear, readable step
+  const users = await apiClient.fetchUsers();
+
+  // Filter with an explicit and self explanatory condition
+  const activeUsers = users.filter(user => user.status === "active");
+
+  return activeUsers;
+}
+```

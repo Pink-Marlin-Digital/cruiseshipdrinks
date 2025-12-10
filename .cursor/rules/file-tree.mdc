@@ -1,0 +1,184 @@
+---
+description: Node.js file and component structure standards
+globs: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.mjs", "**/*.cjs"]
+alwaysApply: true
+---
+
+# File & Component Structure
+
+## File Size & Complexity
+
+### Maximum File Size
+- **200 lines maximum per file** (excluding comments and blank lines)
+- If exceeded, refactor by extracting functions, splitting classes, or breaking into sub-modules
+
+### Functions or React Components Per File
+- **Minimal functions per file** - ideally 1-3 functions
+- Maximum 5 functions per file before splitting
+- Each file should have a single, clear responsibility
+
+## File Naming
+
+### Naming Convention
+- **Use lower-kebab-case** for all file names: `user-service.ts`, `auth-handler.ts`
+- Test files: `*.spec.ts` suffix
+- Type files: `*.types.ts` suffix
+- Config files: `*.config.ts` suffix
+
+## Directory Structure
+
+### Feature-Based Organization
+- **Organize by feature/domain**, not by technical layer
+- Group related files in feature folders
+- Each feature folder should be self-contained
+
+### Standard Structure
+```
+src/
+├── components/                 # Atomic design system UI components
+│   ├── atoms/                  # Atoms: basic building blocks (buttons, inputs, icons, text)
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button.test.tsx
+│   │   │   └── index.ts
+│   │   ├── Input/
+│   │   │   ├── Input.tsx
+│   │   │   ├── Input.test.tsx
+│   │   │   └── index.ts
+│   │   └── ...                 # Other atoms
+│   ├── molecules/              # Molecules: combinations of atoms (form groups, cards)
+│   │   ├── InputGroup/
+│   │   │   ├── InputGroup.tsx
+│   │   │   ├── InputGroup.test.tsx
+│   │   │   └── index.ts
+│   │   ├── Card/
+│   │   │   ├── Card.tsx
+│   │   │   ├── Card.test.tsx
+│   │   │   └── index.ts
+│   │   └── ...                 # Other molecules
+│   ├── organisms/              # Organisms: composed sections (headers, feature blocks)
+│   │   ├── Header/
+│   │   │   ├── Header.tsx
+│   │   │   ├── Header.test.tsx
+│   │   │   └── index.ts
+│   │   ├── FeatureSection/
+│   │   │   ├── FeatureSection.tsx
+│   │   │   ├── FeatureSection.test.tsx
+│   │   │   └── index.ts
+│   │   └── ...                 # Other organisms
+│   └── layouts/                # (Optional) Layout wrappers and templates
+│       ├── MainLayout/
+│       │   ├── MainLayout.tsx
+│       │   └── index.ts
+│       └── ...
+├── features/                   # Feature-based modules (business logic, states, hooks)
+│   ├── user/
+│   │   ├── user-service.ts
+│   │   ├── user-repository.ts
+│   │   ├── user-handler.ts
+│   │   ├── user.types.ts
+│   │   └── index.ts
+│   └── auth/
+│       ├── auth-service.ts
+│       ├── auth-handler.ts
+│       ├── auth.types.ts
+│       └── index.ts
+├── services/                   # Cross-module shared services
+│   ├── database-service.ts
+│   ├── email-service.ts
+│   └── services.types.ts
+├── utils/                      # Pure utility/helper functions
+│   ├── validation/
+│   │   ├── validate-email.ts
+│   │   └── index.ts
+│   └── formatting/
+│       ├── format-date.ts
+│       └── index.ts
+├── config/                     # Configuration files
+│   ├── site.json               # Central site/SEO config, used by Astro and React components
+│   ├── tailwind.config.ts
+│   └── config.types.ts
+├── types/                      # Global/shared type definitions
+│   └── global.types.ts
+└── pages/                      # Astro/Next page routes and static pages
+    ├── index.astro
+    ├── about.astro
+    └── ...
+```
+- Components must be grouped according to atomic design (atoms, molecules, organisms).
+- Each UI component lives in a folder with its logic, test, and `index.ts` file for exports.
+- Central site config (e.g., `site.json`) should be used for global metadata and passed to page/section components.
+- Business/domain logic remains in `features/`, shared code in `services/`, utilities in `utils/`.
+- `pages/` contains entry-point UI/routes (used by Astro/Next).
+
+## Type Definitions
+
+### Separation of Types
+- **Never mix type definitions with code execution** in the same file
+- **Type definitions must be in separate files** with `.types.ts` suffix
+- Use `import type` for all type imports
+
+### Type File Organization
+- Feature types: `feature-name.types.ts` in feature folder
+- Shared types: `shared.types.ts` or `global.types.ts` in `src/types/`
+- Service types: `service-name.types.ts` in service folder
+
+## Cross-Module Dependencies
+
+### Services Folder
+- **Any code referenced from multiple modules must be in `src/services/`**
+- Services are shared, reusable business logic
+- Examples: database connections, email sending, caching, external API clients
+
+### Dependency Direction
+- Features → Services → Utils (dependencies flow inward)
+- Features can depend on services
+- Services should not depend on features
+- Utils can be used by both features and services
+
+## Function Organization
+
+### Nesting Functions in Folders
+- **Group similar functionality together** in folders
+- Each folder should have an `index.ts` that exports the public API
+- Use folders to organize related functions by purpose
+
+### Example
+```
+src/utils/validation/
+├── validate-email.ts
+├── validate-password.ts
+└── index.ts  # Exports all validation functions
+```
+
+## Module Exports
+
+### Public API Pattern
+- Each feature folder should have an `index.ts` file
+- Export only public APIs from `index.ts`
+- Keep internal implementation details private
+- Use named exports, avoid default exports
+
+## Additional Rules
+
+### Single Responsibility
+- Each file should have one clear purpose
+- If a file does multiple things, split it into multiple files
+
+### Circular Dependencies
+- **Never create circular dependencies** between modules
+- Extract shared code to `services/` or `utils/` to break cycles
+
+### Path Aliases
+- Configure TypeScript path aliases: `@/features/user`, `@/services/database`
+- Reduces coupling to file structure changes
+
+### Test Organization
+- Mirror source structure in test directories
+- Place test files next to source: `*.test.ts` or `*.spec.ts`
+- Or use `__tests__` folders within feature directories
+
+### Constants
+- Group related constants in `constants.ts` files
+- Place near usage (feature-level) or in `src/constants/` (global)
+- Use `const` with `UPPER_SNAKE_CASE` for constant values
